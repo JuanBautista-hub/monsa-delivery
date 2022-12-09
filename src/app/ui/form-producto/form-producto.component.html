@@ -1,0 +1,77 @@
+<p-dialog header="Folio : {{this.products?.FolioEntrega}}" [(visible)]="displayBasic" [style]="{width: '80vw'}"
+  [baseZIndex]="10000">
+
+  <div class="grid" [formGroup]="formProducto" >
+    <div class="col-12 md:col-4">
+      <div class="card">
+        <h5>Estatus</h5>
+        <p-timeline [value]="events1">
+          <ng-template pTemplate="content" let-event>
+            <small class="p-text-secondary">&#123;&#123;event.date&#125;&#125;</small>
+          </ng-template>
+          <ng-template pTemplate="opposite" let-event>
+            &#123;&#123;event.status&#125;&#125;
+          </ng-template>
+        </p-timeline>
+      </div>
+    </div>
+
+    <div class="col-12 md:col-4">
+      <div class="card">
+        <h5>Empleado asignado</h5>
+        <p>
+          {{this.empleado?.Perfil?.Nombre}}
+          {{ this.empleado?.Perfil?.Apellido1}} {{this.empleado?.Perfil?.Apellido2}}
+        </p>
+        <p-avatar image="{{this.fotoEmpleado}}"></p-avatar>
+        <div *ngIf="!asignarempleado">
+          <button pButton pRipple type="button" label="Cambiar empleado" class="p-button-secondary"
+            (click)="listaUsuarios()"></button>
+
+        </div>
+        <div *ngIf="asignarempleado">
+          <select class="form-select" aria-label="Default select example" formControlName="empleado">
+            <option selected>Selecciona un empleado</option>
+            <option *ngFor="let com of this.usuariosempleados; let indice = index" value="{{com?.UsuarioID}}">
+              {{com?.Nombre}}({{com.Telefono}})</option>
+
+          </select>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-4">
+      <div class="card">
+        <h5>Cliente</h5>
+        <p>
+          {{this.cliente?.Perfil?.Nombre}}
+          {{ this.cliente?.Perfil?.Apellido1}} {{this.cliente?.Perfil?.Apellido2}}
+        </p>
+
+        <div *ngIf="!asignarcliente">
+          <button pButton pRipple type="button" label="Vincular cliente" class="p-button-secondary"
+            (click)="listaClientes()"></button>
+        </div>
+        <div *ngIf="asignarcliente">
+          <select class="form-select" aria-label="Default select example" formControlName="cliente">
+            <option selected>Selecciona un cliente</option>
+            <option *ngFor="let com of this.usuariosclientes; let indice = index" value="{{com?.UsuarioID}}">
+              {{com?.Nombre}}({{com.Telefono}})</option>
+
+          </select>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h5>Direccion</h5>
+
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="Save()" label="Guardar"></p-button>
+    <p-button icon="pi pi-times" (click)="displayBasic=false" label="Cancelar" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

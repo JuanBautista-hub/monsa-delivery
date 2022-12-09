@@ -1,0 +1,67 @@
+<p-dialog header="Producto" [(visible)]="displayBasic" [style]="{width: '90vw'}" [baseZIndex]="10000">
+  <div class="grid">
+    <div class="col-12 md:col-8">
+
+      <form class="card p-fluid" [formGroup]="formProducto" >
+
+        <div class="field">
+          <label htmlFor="email1">Estado</label>
+          <select pInputText class="form-select" aria-label="Default select example" formControlName="Estado" (change)="getMunicipio($event)">
+            <option selected>Selecciona un estado</option>
+            <option *ngFor="let com of this.Estados; let indice = index" value="{{com.clave}}">
+              {{com.nombre}}</option>
+
+          </select>
+
+        </div>
+        <div class="field">
+          <label htmlFor="email1">Municipio</label>
+          <select pInputText class="form-select" aria-label="Default select example" formControlName="Municipio"(change)="getLocalidad($event)"  >
+            <option selected>Selecciona un estado</option>
+            <option *ngFor="let com of this.Municipios; let indice = index" value="{{com.id}}" >
+              {{com.nombre}}</option>
+
+          </select>
+
+        </div>
+        <div class="field">
+          <label htmlFor="email1">Localidad</label>
+          <select pInputText class="form-select" aria-label="Default select example" formControlName="Localidad">
+            <option selected>Selecciona un estado</option>
+            <option *ngFor="let com of this.Localidades; let indice = index" value="{{com.estado_id}}">
+              {{com.nombre}}</option>
+
+          </select>
+
+        </div>
+        <div class="field">
+          <label htmlFor="age1">Calle</label>
+          <input pInputText id="age1" type="number" step=".01" formControlName="Calle"/>
+        </div>
+        <div class="field">
+          <label htmlFor="age1">Numero interior</label>
+          <input pInputText id="age1" type="number" step=".01" formControlName="NumeroInterior"/>
+        </div>
+        <div class="field">
+          <label htmlFor="age1">Numero exterior</label>
+          <input pInputText id="age1" type="number" step=".01" formControlName="NumeroExterior"/>
+        </div>
+        <div class="field">
+          <label htmlFor="age1">C.P.</label>
+          <input pInputText id="age1" type="number" step=".01" formControlName="CodigoPostal"/>
+        </div>
+        <div class="field">
+          <label htmlFor="age1">Referencia</label>
+          <input pInputText id="age1" type="number" step=".01" formControlName="Referencia"/>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="onSubmit()"   label="Guardar" ></p-button>
+    <p-button icon="pi pi-times" (click)="displayBasic=false" label="Cancelar" styleClass="p-button-text"></p-button>
+</ng-template>
+</p-dialog>
+

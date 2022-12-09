@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { EntregaUseCase } from './domain/usecase/usecase-entrega';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [MessageService]
 })
-export class AppComponent {
-  title = 'monsa-delivery';
+export class AppComponent implements OnInit {
+  constructor(private config: PrimeNGConfig){}
+  title = 'stream';
+  ngOnInit() {
+    this.config.setTranslation({
+      accept: 'Accept',
+      reject: 'Cancel',
+      //translations
+  });
+}
 }
