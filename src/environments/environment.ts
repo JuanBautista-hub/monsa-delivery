@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_KEY:'http://localhost:3000'
+  API_KEY:'Monsapaq-env.eba-qrqeixpm.us-east-1.elasticbeanstalk.com'
 };
 
 /*
